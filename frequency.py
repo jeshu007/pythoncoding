@@ -1,20 +1,24 @@
-string=input("Enter a string: ")
+l=[]
+a=int(input("Enter number of elements: "))
+for i in range(0,a):
+    ele=int(input("Enter the value: "))
+    l.append(ele)
+print(l)
+freq=[None]*len(l)
+visited=-1
+for i in range(0, len(l)):
+    count=1
+    for j in range(i+1, len(l)):
+        if(l[i]==l[j]):
+            count+=1
+            freq[j]=visited
+    if(freq[i]!=visited):
+        freq[i]=count
 
-
-def frequency(s):
-    freq=[0]*26
-    n=len(s)
-    for i in range(n):
-        freq[ord(s[i])-ord('a')]+=1
-    for i in range(n):
-        add=freq[ord(s[i])-ord('a')]%26
-        if (ord(s[i])+add<=ord('z')):
-            s[i]=chr(ord(s[i])+add)
-        else:
-            add=(ord(s[i])+add)-(ord('z'))
-            s[i]=chr(ord('a')+add-1)
-
-
-    print("".join(s))
-
-frequency([i for i in string])
+print("---------------------")   
+print(" Element | Frequency")    
+print("---------------------")    
+for i in range(0, len(freq)):    
+    if(freq[i] != visited):    
+        print("    " + str(l[i]) + "    |    " + str(freq[i]));    
+print("---------------------")
